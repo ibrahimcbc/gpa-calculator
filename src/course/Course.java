@@ -9,11 +9,11 @@ public class Course {
          name= this.name;
          units= this.units;
          grade= this.grade;
-        included= this.included;
+         included= this.included;
     }
 
     public String getName() {
-        return name;
+        return this.name;
     }
 
     public void setName(String name) {
@@ -21,7 +21,7 @@ public class Course {
     }
 
     public double getGrade() {
-        return grade;
+        return this.grade;
     }
 
     public void setGrade(double grade) {
