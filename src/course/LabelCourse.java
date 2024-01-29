@@ -1,5 +1,7 @@
 package course;
 
+import app_frame.DefaultFrame;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -23,10 +25,12 @@ public class LabelCourse extends JPanel {
     JButton courseConfirm=new JButton();
     JButton courseBack=new JButton();
 
+    public static int heightOnPage=50;
+
     public LabelCourse(Course course){
         this.setLayout(null);
         this.setSize(500,80); //TODO change height
-        this.setLocation(50,25);
+        this.setLocation(50,heightOnPage);
         this.setBackground(Color.ORANGE);
 
         courseName.setLocation(20,5);

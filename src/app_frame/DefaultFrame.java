@@ -4,12 +4,13 @@ import course.*;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class DefaultFrame extends JFrame {
-    JButton addButton= new JButton();
-
+    JButton buttonAdd= new JButton();
+    JPanel panelAdd=new JPanel();
     CourseManager courseManager=new CourseManager();
-
     LabelCourse labelCourse= new LabelCourse(new Course("COMP132",3,3.70,true));
     public DefaultFrame(){
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -20,16 +21,23 @@ public class DefaultFrame extends JFrame {
         this.setVisible(true);
         this.setLocationRelativeTo(null);
 
-        addButton.setVisible(true);
-        addButton.setLocation(400,400);
-        addButton.setSize(50,50);
-        addButton.setText("ADD");
-        addButton.setBackground(Color.GREEN);
+        buttonAdd.setVisible(true);
+        buttonAdd.setLocation(400,400);
+        buttonAdd.setSize(50,50);
+        buttonAdd.setText("ADD");
+        buttonAdd.setBackground(Color.GREEN);
 
-        this.add(addButton);
+        this.add(buttonAdd);
         this.add(labelCourse);
-    }
 
+        buttonAdd.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Course new_course=new Course("COMP201",3,3.00,true);
+                courseManager.addCourse("COMP132",new_course);
+            }
+        });
+    }
 
 
 }
