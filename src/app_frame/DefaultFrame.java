@@ -8,9 +8,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class DefaultFrame extends JFrame {
-    JButton buttonAdd= new JButton();
+    public JButton buttonAdd= new JButton();
     JPanel panelAdd=new JPanel();
-    CourseManager courseManager=new CourseManager();
     LabelCourse labelCourse= new LabelCourse(new Course("COMP132",3,3.70,true));
     public DefaultFrame(){
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -30,14 +29,9 @@ public class DefaultFrame extends JFrame {
         this.add(buttonAdd);
         this.add(labelCourse);
 
-        buttonAdd.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                Course new_course=new Course("COMP201",3,3.00,true);
-                courseManager.addCourse("COMP132",new_course);
-            }
-        });
     }
-
+    public void addCoursePanel(LabelCourse labelCourse){
+        this.add(labelCourse);
+    }
 
 }

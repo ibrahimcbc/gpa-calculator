@@ -4,12 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0738dbc8-2dc6-4d2d-8f3a-30b20f3e6146" name="Changes" comment="courseLabel class created">
-      <change afterPath="$PROJECT_DIR$/src/course/courses.txt" afterDir="false" />
+    <list default="true" id="0738dbc8-2dc6-4d2d-8f3a-30b20f3e6146" name="Changes" comment="txt file, manager methods">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app_frame/DefaultFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/app_frame/DefaultFrame.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/course/CourseManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/course/CourseManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/course/LabelCourse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/course/LabelCourse.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -85,7 +84,14 @@
       <option name="project" value="LOCAL" />
       <updated>1706453782966</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="txt file, manager methods">
+      <created>1706560416052</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1706560416052</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -103,6 +109,7 @@
     <MESSAGE value="course class" />
     <MESSAGE value="Frame, comments" />
     <MESSAGE value="courseLabel class created" />
-    <option name="LAST_COMMIT_MESSAGE" value="courseLabel class created" />
+    <MESSAGE value="txt file, manager methods" />
+    <option name="LAST_COMMIT_MESSAGE" value="txt file, manager methods" />
   </component>
 </project>

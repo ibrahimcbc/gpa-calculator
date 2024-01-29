@@ -1,6 +1,8 @@
 import app_frame.*;
+import course.CourseManager;
+
 public class Main {
     public static void main(String[] args) {
-        DefaultFrame defaultFrame= new DefaultFrame();
+        CourseManager courseManager=new CourseManager();
     }
 }
