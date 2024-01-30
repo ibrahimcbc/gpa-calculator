@@ -24,11 +24,10 @@ public class Course {
         gradeLetterToDouble.put("F",0.00);
     }
     public Course(String name, int units, String grade, boolean included){
-         name= this.name;
-         units= this.units;
-         grade= this.grade;
-         included= this.included;
-         this.gradeWeight= gradeLetterToDouble.get(grade);
+         this.name= name;
+         this.units=units;
+         this.grade=grade;
+         this.included=included;
     }
 
     public String getName() {

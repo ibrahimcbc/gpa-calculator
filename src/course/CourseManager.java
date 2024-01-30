@@ -44,17 +44,22 @@ public class CourseManager {
             while(scanner.hasNextLine()){
                 String line= scanner.nextLine(); //TODO try with early declare String line
                 String[] parts= line.split(";");
-                String courseName= parts[0];
-                int courseUnit= Integer.parseInt(parts[1]);
-                String courseGrade= parts[2];
-                boolean courseIncluded= Boolean.parseBoolean(parts[3]);
-                Course course= new Course(courseName,courseUnit,courseGrade,courseIncluded);
-                courses.put(courseName,course);
+                if(parts.length==4) {
+                    String courseName = parts[0].trim();
+                    int courseUnit = Integer.parseInt(parts[1].trim());
+                    String courseGrade = parts[2].trim();
+                    boolean courseIncluded = Boolean.parseBoolean(parts[3].trim());
+                    Course course = new Course(courseName, courseUnit, courseGrade, courseIncluded);
+                    courses.put(courseName, course);
+                }else{
+                    System.out.println("Wrong saving format error.");
+                }
             }
             scanner.close();
         } catch (FileNotFoundException e){
             System.err.println("File not found" + e.getMessage());
         }
+        System.out.println("getCoursesFromTxt function executed successfully, courses in txt become to objects in hashmap");
     }
 
     public void listCourses(){
@@ -62,22 +67,39 @@ public class CourseManager {
             LabelCourse newLabel= new LabelCourse(course);
             newLabel.setVisible(true); //TODO is this necessary?
             LabelCourse.heightOnPage +=50;
+            defaultFrame.addCoursePanel(newLabel);
         }
+        System.out.println("listCourses function done successfully, courses labeled to frame.");
     }
 
     public double gpaCalculator(){
         int totalUnit=0;
         double totalGrade=0.00;
-        for(Course course : courses.values()){
-            if(course.included){
-                totalUnit+=course.getUnits();
-                totalGrade+= course.gradeWeight;
+        if(courses.isEmpty()){
+            return 0;
+        }else{
+            for(Course course : courses.values()){
+                if(course.included){
+                    totalUnit+=course.getUnits();
+                    totalGrade+= course.gradeWeight;
+                }
             }
         }
         return totalGrade/totalUnit;
     }
 
+    void printCourses(){
+        for(Course course:courses.values()){
+            System.out.println(course.getName()+" "+course.getUnits()+" "+course.getGrade()+" "+course.isIncluded()+"\n");
+        }
+    }
+
     public CourseManager(){
+
+        getCoursesFromTxt(); //hashmape attı dataları
+        listCourses();
+        printCourses();
+
         defaultFrame.buttonAdd.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

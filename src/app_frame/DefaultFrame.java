@@ -4,13 +4,12 @@ import course.*;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class DefaultFrame extends JFrame {
     public JButton buttonAdd= new JButton();
     JPanel panelAdd=new JPanel();
-    LabelCourse labelCourse= new LabelCourse(new Course("COMP132",3,"A-",true));
+
+    JLabel labelGPA=new JLabel();
     public DefaultFrame(){
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setResizable(true);
@@ -19,19 +18,23 @@ public class DefaultFrame extends JFrame {
         this.setLayout(null); //TODO
         this.setVisible(true);
         this.setLocationRelativeTo(null);
+        this.getContentPane().setBackground(Color.darkGray);
 
         buttonAdd.setVisible(true);
         buttonAdd.setLocation(400,400);
-        buttonAdd.setSize(50,50);
+        buttonAdd.setSize(60,50);
         buttonAdd.setText("ADD");
-        buttonAdd.setBackground(Color.GREEN);
+        buttonAdd.setBackground(Color.lightGray);
+
+        labelGPA.setVisible(true);
+
 
         this.add(buttonAdd);
-        this.add(labelCourse);
-
+        this.add(labelGPA);
     }
     public void addCoursePanel(LabelCourse labelCourse){
         this.add(labelCourse);
+        this.repaint();
     }
 
 }

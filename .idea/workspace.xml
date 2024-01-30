@@ -4,11 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0738dbc8-2dc6-4d2d-8f3a-30b20f3e6146" name="Changes" comment="txt file methods">
+    <list default="true" id="0738dbc8-2dc6-4d2d-8f3a-30b20f3e6146" name="Changes" comment="letter grade fix, gpa calculate method">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app_frame/DefaultFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/app_frame/DefaultFrame.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/course/Course.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/course/Course.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/course/CourseManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/course/CourseManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/course/LabelCourse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/course/LabelCourse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/course/courses.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/course/courses.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -98,7 +100,14 @@
       <option name="project" value="LOCAL" />
       <updated>1706565216356</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="letter grade fix, gpa calculate method">
+      <created>1706626188349</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1706626188349</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -118,6 +127,7 @@
     <MESSAGE value="courseLabel class created" />
     <MESSAGE value="txt file, manager methods" />
     <MESSAGE value="txt file methods" />
-    <option name="LAST_COMMIT_MESSAGE" value="txt file methods" />
+    <MESSAGE value="letter grade fix, gpa calculate method" />
+    <option name="LAST_COMMIT_MESSAGE" value="letter grade fix, gpa calculate method" />
   </component>
 </project>

@@ -11,7 +11,7 @@ public class LabelCourse extends JPanel {
     JLabel courseName = new JLabel();
     JLabel courseUnit = new JLabel();
     JLabel courseGrade= new JLabel();
-    JLabel courseIncluded= new JLabel();
+    JPanel courseIncluded= new JPanel();
     JButton courseEdit=new JButton();
     JButton courseRemove= new JButton();
 
@@ -29,7 +29,7 @@ public class LabelCourse extends JPanel {
 
     public LabelCourse(Course course){
         this.setLayout(null);
-        this.setSize(500,80); //TODO change height
+        this.setSize(500,35); //TODO change height
         this.setLocation(50,heightOnPage);
         this.setBackground(Color.ORANGE);
 
@@ -42,16 +42,24 @@ public class LabelCourse extends JPanel {
         courseUnit.setSize(25,25);
 
         courseGrade.setLocation(210,5);
+        courseGrade.setText(course.getGrade());
         courseGrade.setSize(25,25);
 
-        courseIncluded.setLocation(285,5);
+        courseIncluded.setLocation(255,5);
+        if(course.isIncluded()){
+            courseIncluded.setBackground(Color.GREEN);
+        }else{
+            courseIncluded.setBackground(Color.RED);
+        }
         courseIncluded.setSize(25,25);
 
-        courseEdit.setLocation(360,5);
-        courseEdit.setSize(25,25);
+        courseEdit.setLocation(320,5);
+        courseEdit.setText("EDIT");
+        courseEdit.setSize(65,25);
 
-        courseRemove.setLocation(435,5);
-        courseRemove.setSize(25,25);
+        courseRemove.setLocation(420,5);
+        courseRemove.setText("DEL");
+        courseRemove.setSize(60,25);
 
         //gradesComboBox.setLocation(1,1);
 
@@ -61,14 +69,14 @@ public class LabelCourse extends JPanel {
         this.add(courseIncluded);
         this.add(courseEdit);
         this.add(courseRemove);
-        /*
-        this.add(courseNameField);
+
+        this.add(courseNameField); //setVisible(false) could be necessarity.
         this.add(courseUnitField);
         this.add(gradesComboBox);
         this.add(courseIncludedBox);
         this.add(courseConfirm);
         this.add(courseBack);
-        */
+
         courseName.setVisible(true);
         courseUnit.setVisible(true);
         courseGrade.setVisible(true);
