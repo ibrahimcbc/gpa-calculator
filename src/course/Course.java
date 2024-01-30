@@ -5,7 +5,6 @@ import java.util.HashMap;
 public class Course {
     String name; //title of course
     String grade; //grade of course (such as A:4.00 , A-:3.70)
-    double gradeWeight;
     int units; //weight of course, such as 1,3
     boolean included=true; //is course included in weighted total, for simulate course scenarios
     static HashMap<String,Double> gradeLetterToDouble;
@@ -60,5 +59,8 @@ public class Course {
 
     public void setIncluded(boolean included) {
         this.included = included;
+    }
+    public double getLetterPoint() {
+        return gradeLetterToDouble.get(this.getGrade());
     }
 }

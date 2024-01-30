@@ -4,6 +4,8 @@ import app_frame.DefaultFrame;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class LabelCourse extends JPanel {
 
@@ -37,13 +39,25 @@ public class LabelCourse extends JPanel {
         courseName.setText(course.getName());
         courseName.setSize(85,25);
 
+        courseNameField.setLocation(20,5);
+        courseNameField.setText(course.getName());
+        courseNameField.setSize(85,25);
+
         courseUnit.setLocation(135,5);
-        courseUnit.setText(course.getUnits()+""); //tricky way to convert int to string
+        courseUnit.setText(String.valueOf(course.getUnits()));
         courseUnit.setSize(25,25);
+
+        courseUnitField.setLocation(135,5);
+        courseUnitField.setText(String.valueOf(course.getUnits()));
+        courseUnitField.setSize(25,25);
 
         courseGrade.setLocation(210,5);
         courseGrade.setText(course.getGrade());
         courseGrade.setSize(25,25);
+
+        gradesComboBox.setLocation(200,5);
+        gradesComboBox.setSelectedItem(course.getGrade());
+        gradesComboBox.setSize(42,25);
 
         courseIncluded.setLocation(255,5);
         if(course.isIncluded()){
@@ -53,15 +67,25 @@ public class LabelCourse extends JPanel {
         }
         courseIncluded.setSize(25,25);
 
+        courseIncludedBox.setLocation(255,5);
+        courseIncludedBox.setSelected(course.isIncluded());
+        courseIncludedBox.setSize(25,25);
+
         courseEdit.setLocation(320,5);
         courseEdit.setText("EDIT");
         courseEdit.setSize(65,25);
+
+        courseBack.setLocation(320,5);
+        courseBack.setText("BACK");
+        courseBack.setSize(65,25);
 
         courseRemove.setLocation(420,5);
         courseRemove.setText("DEL");
         courseRemove.setSize(60,25);
 
-        //gradesComboBox.setLocation(1,1);
+        courseConfirm.setLocation(420,5);
+        courseConfirm.setText("APPLY");
+        courseConfirm.setSize(60,25);
 
         this.add(courseName);
         this.add(courseUnit);
@@ -77,6 +101,49 @@ public class LabelCourse extends JPanel {
         this.add(courseConfirm);
         this.add(courseBack);
 
+        showBasicMode();
+
+        courseEdit.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                showEditMode();
+            }
+        });
+
+        courseBack.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                showBasicMode();
+            }
+        });
+
+        courseConfirm.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+
+                showBasicMode();
+            }
+        });
+    }
+
+    private void showEditMode(){
+        courseName.setVisible(false);
+        courseUnit.setVisible(false);
+        courseGrade.setVisible(false);
+        courseIncluded.setVisible(false);
+        courseEdit.setVisible(false);
+        courseRemove.setVisible(false);
+
+        courseNameField.setVisible(true);
+        courseUnitField.setVisible(true);
+        gradesComboBox.setVisible(true);
+        courseIncludedBox.setVisible(true);
+        courseBack.setVisible(true);
+        courseConfirm.setVisible(true);
+    }
+
+    private void showBasicMode(){
         courseName.setVisible(true);
         courseUnit.setVisible(true);
         courseGrade.setVisible(true);
@@ -84,5 +151,11 @@ public class LabelCourse extends JPanel {
         courseEdit.setVisible(true);
         courseRemove.setVisible(true);
 
+        courseNameField.setVisible(false);
+        courseUnitField.setVisible(false);
+        gradesComboBox.setVisible(false);
+        courseIncludedBox.setVisible(false);
+        courseBack.setVisible(false);
+        courseConfirm.setVisible(false);
     }
 }

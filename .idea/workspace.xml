@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0738dbc8-2dc6-4d2d-8f3a-30b20f3e6146" name="Changes" comment="letter grade fix, gpa calculate method">
+    <list default="true" id="0738dbc8-2dc6-4d2d-8f3a-30b20f3e6146" name="Changes" comment="CourseLabel fix">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app_frame/DefaultFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/app_frame/DefaultFrame.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/course/Course.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/course/Course.java" afterDir="false" />
@@ -107,7 +107,14 @@
       <option name="project" value="LOCAL" />
       <updated>1706626188349</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="CourseLabel fix">
+      <created>1706629943682</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1706629943682</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -128,6 +135,7 @@
     <MESSAGE value="txt file, manager methods" />
     <MESSAGE value="txt file methods" />
     <MESSAGE value="letter grade fix, gpa calculate method" />
-    <option name="LAST_COMMIT_MESSAGE" value="letter grade fix, gpa calculate method" />
+    <MESSAGE value="CourseLabel fix" />
+    <option name="LAST_COMMIT_MESSAGE" value="CourseLabel fix" />
   </component>
 </project>

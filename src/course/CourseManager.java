@@ -12,6 +12,7 @@ import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
 import java.util.HashMap;
 import java.util.Scanner;
+import java.text.DecimalFormat;
 
 public class CourseManager {
     DefaultFrame defaultFrame=new DefaultFrame();
@@ -72,20 +73,26 @@ public class CourseManager {
         System.out.println("listCourses function done successfully, courses labeled to frame.");
     }
 
-    public double gpaCalculator(){
+    private static String formatDouble(double value){
+        DecimalFormat decimalFormat=new DecimalFormat("0.00");
+        return decimalFormat.format(value);
+    }
+
+    public void gpaCalculator(){
         int totalUnit=0;
         double totalGrade=0.00;
         if(courses.isEmpty()){
-            return 0;
+            defaultFrame.labelGPA.setText("TOTAL GPA: "+ 0.00);
         }else{
             for(Course course : courses.values()){
                 if(course.included){
+                    System.out.println("course active: unit: "+course.getUnits()+" weight: "+ course.getLetterPoint());
                     totalUnit+=course.getUnits();
-                    totalGrade+= course.gradeWeight;
+                    totalGrade+= course.getLetterPoint()*course.getUnits();
                 }
             }
         }
-        return totalGrade/totalUnit;
+        defaultFrame.labelGPA.setText("TOTAL GPA: "+formatDouble(totalGrade/totalUnit));
     }
 
     void printCourses(){
@@ -99,6 +106,7 @@ public class CourseManager {
         getCoursesFromTxt(); //hashmape attı dataları
         listCourses();
         printCourses();
+        gpaCalculator();
 
         defaultFrame.buttonAdd.addActionListener(new ActionListener() {
             @Override

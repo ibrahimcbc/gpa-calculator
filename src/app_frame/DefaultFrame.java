@@ -8,8 +8,7 @@ import java.awt.*;
 public class DefaultFrame extends JFrame {
     public JButton buttonAdd= new JButton();
     JPanel panelAdd=new JPanel();
-
-    JLabel labelGPA=new JLabel();
+    public JLabel labelGPA=new JLabel();
     public DefaultFrame(){
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setResizable(true);
@@ -21,12 +20,15 @@ public class DefaultFrame extends JFrame {
         this.getContentPane().setBackground(Color.darkGray);
 
         buttonAdd.setVisible(true);
-        buttonAdd.setLocation(400,400);
+        buttonAdd.setLocation(200,400);
         buttonAdd.setSize(60,50);
         buttonAdd.setText("ADD");
         buttonAdd.setBackground(Color.lightGray);
 
         labelGPA.setVisible(true);
+        labelGPA.setLocation(400,400);
+        labelGPA.setSize(120,50);
+        labelGPA.setForeground(Color.lightGray);
 
 
         this.add(buttonAdd);
