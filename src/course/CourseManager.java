@@ -27,7 +27,7 @@ public class CourseManager {
         courses.put(name,course);
     }
 
-    public void writeToFile(String courseName,int courseUnit, double courseGrade, boolean courseIncluded){
+    public void writeToFile(String courseName,int courseUnit, String courseGrade, boolean courseIncluded){
         String courseToAppend= courseName+";"+courseUnit+";"+courseGrade+";"+courseIncluded+"\n";
         try {
             Files.write(Path.of(file), courseToAppend.getBytes(), StandardOpenOption.CREATE, StandardOpenOption.APPEND);
@@ -46,7 +46,7 @@ public class CourseManager {
                 String[] parts= line.split(";");
                 String courseName= parts[0];
                 int courseUnit= Integer.parseInt(parts[1]);
-                double courseGrade= Double.parseDouble(parts[2]);
+                String courseGrade= parts[2];
                 boolean courseIncluded= Boolean.parseBoolean(parts[3]);
                 Course course= new Course(courseName,courseUnit,courseGrade,courseIncluded);
                 courses.put(courseName,course);
@@ -60,16 +60,28 @@ public class CourseManager {
     public void listCourses(){
         for(Course course : courses.values()){
             LabelCourse newLabel= new LabelCourse(course);
-            newLabel.setVisible(true);
+            newLabel.setVisible(true); //TODO is this necessary?
             LabelCourse.heightOnPage +=50;
         }
+    }
+
+    public double gpaCalculator(){
+        int totalUnit=0;
+        double totalGrade=0.00;
+        for(Course course : courses.values()){
+            if(course.included){
+                totalUnit+=course.getUnits();
+                totalGrade+= course.gradeWeight;
+            }
+        }
+        return totalGrade/totalUnit;
     }
 
     public CourseManager(){
         defaultFrame.buttonAdd.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Course new_course=new Course("COMP201",3,3.00,true);
+                Course new_course=new Course("COMP201",3,"B",true);
                 courses.put(new_course.getName(),new_course);
                 writeToFile(new_course.getName(),new_course.getUnits(),new_course.getGrade(),new_course.isIncluded());
             }

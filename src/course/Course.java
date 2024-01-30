@@ -1,15 +1,34 @@
 package course;
 
+import java.util.HashMap;
+
 public class Course {
     String name; //title of course
-    double grade=0; //grade of course (such as A:4.00 , A-:3.70)
+    String grade; //grade of course (such as A:4.00 , A-:3.70)
+    double gradeWeight;
     int units; //weight of course, such as 1,3
     boolean included=true; //is course included in weighted total, for simulate course scenarios
-    public Course(String name, int units, double grade, boolean included){
+    static HashMap<String,Double> gradeLetterToDouble;
+    static {
+        gradeLetterToDouble= new HashMap<>();
+        gradeLetterToDouble.put("A",4.00);
+        gradeLetterToDouble.put("A-",3.70);
+        gradeLetterToDouble.put("B+",3.30);
+        gradeLetterToDouble.put("B",3.00);
+        gradeLetterToDouble.put("B-",2.70);
+        gradeLetterToDouble.put("C+",2.30);
+        gradeLetterToDouble.put("C",2.00);
+        gradeLetterToDouble.put("C-",1.70);
+        gradeLetterToDouble.put("D+",1.30);
+        gradeLetterToDouble.put("D",1.00);
+        gradeLetterToDouble.put("F",0.00);
+    }
+    public Course(String name, int units, String grade, boolean included){
          name= this.name;
          units= this.units;
          grade= this.grade;
          included= this.included;
+         this.gradeWeight= gradeLetterToDouble.get(grade);
     }
 
     public String getName() {
@@ -20,11 +39,11 @@ public class Course {
         this.name = name;
     }
 
-    public double getGrade() {
+    public String getGrade() {
         return this.grade;
     }
 
-    public void setGrade(double grade) {
+    public void setGrade(String grade) {
         this.grade = grade;
     }
 

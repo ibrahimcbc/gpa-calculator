@@ -10,7 +10,7 @@ import java.awt.event.ActionListener;
 public class DefaultFrame extends JFrame {
     public JButton buttonAdd= new JButton();
     JPanel panelAdd=new JPanel();
-    LabelCourse labelCourse= new LabelCourse(new Course("COMP132",3,3.70,true));
+    LabelCourse labelCourse= new LabelCourse(new Course("COMP132",3,"A-",true));
     public DefaultFrame(){
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setResizable(true);
