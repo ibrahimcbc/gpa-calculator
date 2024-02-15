@@ -116,5 +116,7 @@ public class CourseManager {
                 writeToFile(new_course.getName(),new_course.getUnits(),new_course.getGrade(),new_course.isIncluded());
             }
         });
+
+
     }
 }

@@ -120,11 +120,38 @@ public class LabelCourse extends JPanel {
         courseConfirm.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
-
+                if(!courseNameField.getText().isEmpty()){
+                    course.setName(courseNameField.getText());
+                    LabelCourse.this.courseName.setText(courseNameField.getText());
+                }else{
+                    //TODO give empty error
+                }
+                if(!courseUnitField.getText().isEmpty()){
+                    if(isInteger(courseUnit.getText())){
+                        course.setUnits(Integer.parseInt(courseUnitField.getText()));
+                        LabelCourse.this.courseUnit.setText(courseUnitField.getText());
+                }else{
+                        //TODO give type error
+                    }
+                }else{
+                    //TODO give empty error
+                }
+                course.setGrade((String) gradesComboBox.getSelectedItem());
+                LabelCourse.this.courseGrade.setText((String) gradesComboBox.getSelectedItem());
+                course.setIncluded(courseIncludedBox.isSelected());
+                LabelCourse.this.repaint();
                 showBasicMode();
             }
         });
+    }
+
+    public static boolean isInteger(String str) {
+        try {
+            Integer.parseInt(str);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
     }
 
     private void showEditMode(){
