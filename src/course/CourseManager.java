@@ -4,20 +4,20 @@ import app_frame.DefaultFrame;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Scanner;
 import java.text.DecimalFormat;
 
 public class CourseManager {
-    DefaultFrame defaultFrame=new DefaultFrame();
-    HashMap<String,Course> courses= new HashMap();
-    String file= "src\\course\\courses.txt";
+    static DefaultFrame defaultFrame=new DefaultFrame();
+    static HashMap<String,Course> courses= new HashMap();
+    public static String file= "src\\course\\courses.txt";
     public void addCourse(String name,Course course){
         for(String course_name : courses.keySet()){
             if(course_name.equals(name)){
@@ -38,10 +38,37 @@ public class CourseManager {
 
     }
 
+    public static void changeCourseToFile(String courseName, String newCourseName,int courseUnit, String courseGrade, boolean courseIncluded) throws FileNotFoundException {
+        List<String> lines = new ArrayList<>();
+        try (BufferedReader br = new BufferedReader(new FileReader(file))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] parts = line.split(";");
+                if (parts[0].equals(courseName)) {
+                    parts[0] = newCourseName;
+                    parts[1]= String.valueOf(courseUnit);
+                    parts[2]= courseGrade;
+                    parts[3]= String.valueOf(courseIncluded);
+                }
+                lines.add(String.join(";", parts));
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(file))) {
+            for (String line : lines) {
+                bw.write(line);
+                bw.newLine();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void getCoursesFromTxt(){
         try {
             Scanner scanner=new Scanner(new File(file));
-
             while(scanner.hasNextLine()){
                 String line= scanner.nextLine(); //TODO try with early declare String line
                 String[] parts= line.split(";");
@@ -78,7 +105,7 @@ public class CourseManager {
         return decimalFormat.format(value);
     }
 
-    public void gpaCalculator(){
+    public static void gpaCalculator(){
         int totalUnit=0;
         double totalGrade=0.00;
         if(courses.isEmpty()){

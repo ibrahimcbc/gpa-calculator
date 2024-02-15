@@ -6,6 +6,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
 
 public class LabelCourse extends JPanel {
 
@@ -120,6 +121,7 @@ public class LabelCourse extends JPanel {
         courseConfirm.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                String name= course.getName();
                 if(!courseNameField.getText().isEmpty()){
                     course.setName(courseNameField.getText());
                     LabelCourse.this.courseName.setText(courseNameField.getText());
@@ -139,8 +141,19 @@ public class LabelCourse extends JPanel {
                 course.setGrade((String) gradesComboBox.getSelectedItem());
                 LabelCourse.this.courseGrade.setText((String) gradesComboBox.getSelectedItem());
                 course.setIncluded(courseIncludedBox.isSelected());
-                LabelCourse.this.repaint();
+                if(course.isIncluded()){
+                    courseIncluded.setBackground(Color.GREEN);
+                }else{
+                    courseIncluded.setBackground(Color.RED);
+                }
+                //LabelCourse.this.repaint();
+                try {
+                    CourseManager.changeCourseToFile(name,course.getName(),course.getUnits(),course.getGrade(),course.isIncluded());
+                } catch (FileNotFoundException ex) {
+                    throw new RuntimeException(ex);
+                }
                 showBasicMode();
+                CourseManager.gpaCalculator();
             }
         });
     }
