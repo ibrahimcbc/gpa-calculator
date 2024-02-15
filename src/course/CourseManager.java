@@ -16,7 +16,7 @@ import java.text.DecimalFormat;
 
 public class CourseManager {
     static DefaultFrame defaultFrame=new DefaultFrame();
-    static HashMap<String,Course> courses= new HashMap();
+    public static HashMap<String,Course> courses= new HashMap();
     public static String file= "src\\course\\courses.txt";
     public void addCourse(String name,Course course){
         for(String course_name : courses.keySet()){
@@ -28,7 +28,7 @@ public class CourseManager {
         courses.put(name,course);
     }
 
-    public void writeToFile(String courseName,int courseUnit, String courseGrade, boolean courseIncluded){
+    public static void writeToFile(String courseName, int courseUnit, String courseGrade, boolean courseIncluded){
         String courseToAppend= courseName+";"+courseUnit+";"+courseGrade+";"+courseIncluded+"\n";
         try {
             Files.write(Path.of(file), courseToAppend.getBytes(), StandardOpenOption.CREATE, StandardOpenOption.APPEND);
@@ -61,6 +61,7 @@ public class CourseManager {
                 bw.write(line);
                 bw.newLine();
             }
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -133,17 +134,7 @@ public class CourseManager {
         getCoursesFromTxt(); //hashmape attı dataları
         listCourses();
         printCourses();
-        gpaCalculator();
-
-        defaultFrame.buttonAdd.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                Course new_course=new Course("COMP201",3,"B",true);
-                courses.put(new_course.getName(),new_course);
-                writeToFile(new_course.getName(),new_course.getUnits(),new_course.getGrade(),new_course.isIncluded());
-            }
-        });
-
+        gpaCalculator(); //TODO isin bitince sil
 
     }
 }
