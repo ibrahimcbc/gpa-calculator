@@ -2,6 +2,8 @@ package course;
 
 import app_frame.DefaultFrame;
 
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
@@ -91,12 +93,42 @@ public class CourseManager {
         System.out.println("getCoursesFromTxt function executed successfully, courses in txt become to objects in hashmap");
     }
 
-    public void listCourses(){
+    public static void deleteCourseFromTxt(String courseName) throws FileNotFoundException {
+        System.out.println(courseName);
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader(file));
+            StringBuilder content = new StringBuilder();
+            String currentLine;
+
+            // Read the contents of the file and remove the line with the specified course code
+            while ((currentLine = reader.readLine()) != null) {
+                if (currentLine != null && !currentLine.startsWith(courseName)) {
+                    content.append(currentLine).append(System.lineSeparator());
+                }
+            }
+            reader.close();
+
+            // Write the modified content back to the file
+            BufferedWriter writer = new BufferedWriter(new FileWriter(file));
+            writer.write(content.toString());
+            writer.close();
+
+            System.out.println("Course " + courseName + " deleted successfully.");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    public static void listCourses(){
         for(Course course : courses.values()){
             LabelCourse newLabel= new LabelCourse(course);
-            newLabel.setVisible(true); //TODO is this necessary?
-            LabelCourse.heightOnPage +=50;
-            defaultFrame.addCoursePanel(newLabel);
+            newLabel.setMaximumSize(new Dimension(500, 35));
+            JPanel blackPanel= new JPanel();
+            blackPanel.setBackground(Color.black);
+            blackPanel.setPreferredSize(new Dimension(500,15));
+            defaultFrame.existingPanel.add(newLabel);
+            defaultFrame.existingPanel.add(blackPanel);
         }
         System.out.println("listCourses function done successfully, courses labeled to frame.");
     }

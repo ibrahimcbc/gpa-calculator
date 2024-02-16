@@ -8,6 +8,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class DefaultFrame extends JFrame {
+
+    public JPanel coursesPanel=new JPanel(new FlowLayout()); //we can scroll the courses and it will solve placement problem.
+    public static JPanel existingPanel = new JPanel();
+    JScrollPane scrollPane;
     public JButton buttonAdd= new JButton();
     public JPanel panelAdd=new JPanel();
     public JLabel labelGPA=new JLabel();
@@ -21,13 +25,29 @@ public class DefaultFrame extends JFrame {
     JButton courseBack=new JButton();
     public DefaultFrame(){
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        this.setResizable(true);
+        this.setResizable(false);
         this.setSize(600,800);
         this.setTitle("GPA CALCULATOR");
         this.setLayout(null); //TODO
         this.setVisible(true);
         this.setLocationRelativeTo(null);
         this.getContentPane().setBackground(Color.darkGray);
+
+        coursesPanel.setVisible(true);
+        coursesPanel.setBounds(50,50,500 ,500);
+        coursesPanel.setBackground(Color.black);
+        coursesPanel.setLayout(new BoxLayout(coursesPanel, BoxLayout.Y_AXIS));
+
+        existingPanel.setBackground(Color.black);
+        existingPanel.setLayout(new BoxLayout(existingPanel, BoxLayout.Y_AXIS));
+
+        scrollPane= new JScrollPane(existingPanel);
+        scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS); //try needed
+        scrollPane.setPreferredSize(new Dimension(500, 500));
+        scrollPane.getVerticalScrollBar().setBackground(Color.DARK_GRAY);
+        scrollPane.getVerticalScrollBar().setForeground(Color.WHITE);
+        scrollPane.setBorder(BorderFactory.createLineBorder(Color.lightGray));
 
         buttonAdd.setVisible(true);
         buttonAdd.setLocation(200,700);
@@ -36,7 +56,7 @@ public class DefaultFrame extends JFrame {
         buttonAdd.setBackground(Color.lightGray);
 
         panelAdd.setVisible(false);
-        panelAdd.setLocation(50,400);
+        panelAdd.setLocation(50,700);
         panelAdd.setSize(500,35);
         panelAdd.setBackground(Color.cyan);
 
@@ -54,23 +74,25 @@ public class DefaultFrame extends JFrame {
 
         courseBack.setLocation(320,5);
         courseBack.setText("BACK");
-        courseBack.setSize(65,25);
+        courseBack.setSize(75,25);
 
-        courseConfirm.setLocation(420,5);
+        courseConfirm.setLocation(405,5);
         courseConfirm.setText("APPLY");
-        courseConfirm.setSize(60,25);
+        courseConfirm.setSize(75,25);
 
         labelGPA.setVisible(true);
-        labelGPA.setLocation(400,700);
+        labelGPA.setLocation(100,550);
         labelGPA.setSize(120,50);
         labelGPA.setForeground(Color.lightGray);
 
         panelAdd.setLayout(null);
 
+        this.add(coursesPanel);
         this.add(panelAdd);
         this.add(buttonAdd);
         this.add(labelGPA);
 
+        coursesPanel.add(scrollPane,BorderLayout.CENTER);
         panelAdd.add(courseNameField);
         panelAdd.add(courseUnitField);
         panelAdd.add(courseIncludedBox);
@@ -85,9 +107,17 @@ public class DefaultFrame extends JFrame {
                 CourseManager.courses.put(new_course.getName(),new_course);
                 CourseManager.writeToFile(new_course.getName(),new_course.getUnits(),new_course.getGrade(),new_course.isIncluded());
                 LabelCourse labelCourse= new LabelCourse(new_course);
-                addCoursePanel(labelCourse);
+                labelCourse.setMaximumSize(new Dimension(500, 35));
+                JPanel blackPanel= new JPanel();
+                blackPanel.setBackground(Color.black);
+                blackPanel.setPreferredSize(new Dimension(500,15));
+                blackPanel.setMaximumSize(new Dimension(500,15));
+                existingPanel.add(labelCourse);
+                existingPanel.add(blackPanel);
                 panelAdd.setVisible(false);
                 buttonAdd.setVisible(true);
+                CourseManager.gpaCalculator();
+                DefaultFrame.this.repaint();
             }
         });
 

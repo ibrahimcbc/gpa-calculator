@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0738dbc8-2dc6-4d2d-8f3a-30b20f3e6146" name="Changes" comment="CourseLabel fix">
+    <list default="true" id="0738dbc8-2dc6-4d2d-8f3a-30b20f3e6146" name="Changes" comment="add button functionalized">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app_frame/DefaultFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/app_frame/DefaultFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/course/Course.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/course/Course.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/course/CourseManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/course/CourseManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/course/LabelCourse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/course/LabelCourse.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/course/courses.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/course/courses.txt" afterDir="false" />
@@ -114,7 +113,35 @@
       <option name="project" value="LOCAL" />
       <updated>1706629943682</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="edit mode">
+      <created>1706646723834</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1706646723834</updated>
+    </task>
+    <task id="LOCAL-00009" summary="label course edit mode improvement">
+      <created>1708001032333</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1708001032333</updated>
+    </task>
+    <task id="LOCAL-00010" summary="label course edit mode improvement">
+      <created>1708034994954</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1708034994954</updated>
+    </task>
+    <task id="LOCAL-00011" summary="add button functionalized">
+      <created>1708041437594</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1708041437594</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -136,6 +163,19 @@
     <MESSAGE value="txt file methods" />
     <MESSAGE value="letter grade fix, gpa calculate method" />
     <MESSAGE value="CourseLabel fix" />
-    <option name="LAST_COMMIT_MESSAGE" value="CourseLabel fix" />
+    <MESSAGE value="edit mode" />
+    <MESSAGE value="label course edit mode improvement" />
+    <MESSAGE value="add button functionalized" />
+    <option name="LAST_COMMIT_MESSAGE" value="add button functionalized" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.NullPointerException" package="java.lang" />
+          <option name="timeStamp" value="2" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

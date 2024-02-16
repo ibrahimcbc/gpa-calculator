@@ -31,10 +31,12 @@ public class LabelCourse extends JPanel {
     public static int heightOnPage=50;
 
     public LabelCourse(Course course){
-        this.setLayout(null);
-        this.setSize(500,35); //TODO change height
-        this.setLocation(50,heightOnPage);
+        this.setLayout(null); //inactivated
+        //this.setSize(500,35); //TODO change height
+        this.setPreferredSize(new Dimension(500, 35));
+        this.setLocation(50,heightOnPage); //heightOnPage=50 and increasing in every new LabelCourse by 50
         this.setBackground(Color.ORANGE);
+        this.setVisible(true);
 
         courseName.setLocation(20,5);
         courseName.setText(course.getName());
@@ -78,7 +80,7 @@ public class LabelCourse extends JPanel {
 
         courseBack.setLocation(320,5);
         courseBack.setText("BACK");
-        courseBack.setSize(65,25);
+        courseBack.setSize(75,25);
 
         courseRemove.setLocation(420,5);
         courseRemove.setText("DEL");
@@ -86,7 +88,7 @@ public class LabelCourse extends JPanel {
 
         courseConfirm.setLocation(420,5);
         courseConfirm.setText("APPLY");
-        courseConfirm.setSize(60,25);
+        courseConfirm.setSize(75,25);
 
         this.add(courseName);
         this.add(courseUnit);
@@ -108,6 +110,23 @@ public class LabelCourse extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 showEditMode();
+            }
+        });
+
+        courseRemove.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String name= course.getName();
+                CourseManager.courses.remove(name);
+                try {
+                    CourseManager.deleteCourseFromTxt(name);
+                } catch (FileNotFoundException ex) {
+                    throw new RuntimeException(ex);
+                }
+                DefaultFrame.existingPanel.removeAll();
+                CourseManager.listCourses();
+                DefaultFrame.existingPanel.revalidate();
+                DefaultFrame.existingPanel.repaint();
             }
         });
 
