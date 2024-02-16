@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0738dbc8-2dc6-4d2d-8f3a-30b20f3e6146" name="Changes" comment="add button functionalized">
+    <list default="true" id="0738dbc8-2dc6-4d2d-8f3a-30b20f3e6146" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app_frame/DefaultFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/app_frame/DefaultFrame.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/course/CourseManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/course/CourseManager.java" afterDir="false" />
@@ -141,7 +141,14 @@
       <option name="project" value="LOCAL" />
       <updated>1708041437594</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="del function, content panel">
+      <created>1708091574403</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1708091574403</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -166,7 +173,8 @@
     <MESSAGE value="edit mode" />
     <MESSAGE value="label course edit mode improvement" />
     <MESSAGE value="add button functionalized" />
-    <option name="LAST_COMMIT_MESSAGE" value="add button functionalized" />
+    <MESSAGE value="del function, content panel" />
+    <option name="LAST_COMMIT_MESSAGE" value="del function, content panel" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -155,18 +155,9 @@ public class CourseManager {
         defaultFrame.labelGPA.setText("TOTAL GPA: "+formatDouble(totalGrade/totalUnit));
     }
 
-    void printCourses(){
-        for(Course course:courses.values()){
-            System.out.println(course.getName()+" "+course.getUnits()+" "+course.getGrade()+" "+course.isIncluded()+"\n");
-        }
-    }
-
     public CourseManager(){
-
         getCoursesFromTxt(); //hashmape attı dataları
         listCourses();
-        printCourses();
-        gpaCalculator(); //TODO isin bitince sil
-
+        gpaCalculator();
     }
 }

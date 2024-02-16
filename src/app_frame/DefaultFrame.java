@@ -23,6 +23,7 @@ public class DefaultFrame extends JFrame {
     JCheckBox courseIncludedBox=new JCheckBox();
     JButton courseConfirm=new JButton();
     JButton courseBack=new JButton();
+    public static JLabel performLabel=new JLabel();
     public DefaultFrame(){
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setResizable(false);
@@ -32,6 +33,10 @@ public class DefaultFrame extends JFrame {
         this.setVisible(true);
         this.setLocationRelativeTo(null);
         this.getContentPane().setBackground(Color.darkGray);
+
+        performLabel.setBounds(100,20,300,30);
+        performLabel.setForeground(Color.RED);
+        performLabel.setVisible(true);
 
         coursesPanel.setVisible(true);
         coursesPanel.setBounds(50,50,500 ,500);
@@ -51,8 +56,8 @@ public class DefaultFrame extends JFrame {
 
         buttonAdd.setVisible(true);
         buttonAdd.setLocation(200,700);
-        buttonAdd.setSize(60,50);
-        buttonAdd.setText("ADD");
+        buttonAdd.setSize(120,50);
+        buttonAdd.setText("ADD COURSE");
         buttonAdd.setBackground(Color.lightGray);
 
         panelAdd.setVisible(false);
@@ -77,7 +82,7 @@ public class DefaultFrame extends JFrame {
         courseBack.setSize(75,25);
 
         courseConfirm.setLocation(405,5);
-        courseConfirm.setText("APPLY");
+        courseConfirm.setText("ADD");
         courseConfirm.setSize(75,25);
 
         labelGPA.setVisible(true);
@@ -91,6 +96,7 @@ public class DefaultFrame extends JFrame {
         this.add(panelAdd);
         this.add(buttonAdd);
         this.add(labelGPA);
+        this.add(performLabel);
 
         coursesPanel.add(scrollPane,BorderLayout.CENTER);
         panelAdd.add(courseNameField);
@@ -103,21 +109,34 @@ public class DefaultFrame extends JFrame {
         courseConfirm.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Course new_course=new Course(courseNameField.getText(),Integer.parseInt(courseUnitField.getText()),(String)gradesComboBox.getSelectedItem(),courseIncludedBox.isSelected());
-                CourseManager.courses.put(new_course.getName(),new_course);
-                CourseManager.writeToFile(new_course.getName(),new_course.getUnits(),new_course.getGrade(),new_course.isIncluded());
-                LabelCourse labelCourse= new LabelCourse(new_course);
-                labelCourse.setMaximumSize(new Dimension(500, 35));
-                JPanel blackPanel= new JPanel();
-                blackPanel.setBackground(Color.black);
-                blackPanel.setPreferredSize(new Dimension(500,15));
-                blackPanel.setMaximumSize(new Dimension(500,15));
-                existingPanel.add(labelCourse);
-                existingPanel.add(blackPanel);
-                panelAdd.setVisible(false);
-                buttonAdd.setVisible(true);
-                CourseManager.gpaCalculator();
-                DefaultFrame.this.repaint();
+                if(!courseNameField.getText().isEmpty()){
+                    if(courseUnitField.getText().matches("\\d+$")){
+                        Course new_course=new Course(courseNameField.getText(),Integer.parseInt(courseUnitField.getText()),(String)gradesComboBox.getSelectedItem(),courseIncludedBox.isSelected());
+                        CourseManager.courses.put(new_course.getName(),new_course);
+                        CourseManager.writeToFile(new_course.getName(),new_course.getUnits(),new_course.getGrade(),new_course.isIncluded());
+                        LabelCourse labelCourse= new LabelCourse(new_course);
+                        labelCourse.setMaximumSize(new Dimension(500, 35));
+                        JPanel blackPanel= new JPanel();
+                        blackPanel.setBackground(Color.black);
+                        blackPanel.setPreferredSize(new Dimension(500,15));
+                        blackPanel.setMaximumSize(new Dimension(500,15));
+                        existingPanel.add(labelCourse);
+                        existingPanel.add(blackPanel);
+                        panelAdd.setVisible(false);
+                        buttonAdd.setVisible(true);
+                        CourseManager.gpaCalculator();
+                        performLabel.setText("COURSE ADDED SUCCESSFULLY");
+                        performLabel.setForeground(Color.green);
+                        DefaultFrame.this.repaint();
+                    }else{
+                        performLabel.setText("Couse unit should be a number.");
+                        performLabel.setForeground(Color.red);
+                    }
+                }else{
+                    performLabel.setText("Course should have a name!");
+                    performLabel.setForeground(Color.red);
+                }
+
             }
         });
 
@@ -136,11 +155,6 @@ public class DefaultFrame extends JFrame {
                 buttonAdd.setVisible(true);
             }
         });
-    }
-    public void addCoursePanel(LabelCourse labelCourse){
-        System.out.println("DONE!!!!"); //TODO sorun 1 kere ekrana eklemesi sonra positionu ayarlayamıyor.
-        this.add(labelCourse);
-        this.repaint();
     }
 
 }

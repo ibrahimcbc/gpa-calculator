@@ -9,7 +9,6 @@ import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
 
 public class LabelCourse extends JPanel {
-
     /* basic mode properties */
     JLabel courseName = new JLabel();
     JLabel courseUnit = new JLabel();
@@ -31,8 +30,7 @@ public class LabelCourse extends JPanel {
     public static int heightOnPage=50;
 
     public LabelCourse(Course course){
-        this.setLayout(null); //inactivated
-        //this.setSize(500,35); //TODO change height
+        this.setLayout(null);
         this.setPreferredSize(new Dimension(500, 35));
         this.setLocation(50,heightOnPage); //heightOnPage=50 and increasing in every new LabelCourse by 50
         this.setBackground(Color.ORANGE);
@@ -127,6 +125,9 @@ public class LabelCourse extends JPanel {
                 CourseManager.listCourses();
                 DefaultFrame.existingPanel.revalidate();
                 DefaultFrame.existingPanel.repaint();
+                CourseManager.gpaCalculator();
+                DefaultFrame.performLabel.setText("COURSE DELETED SUCCESSFULLY");
+                DefaultFrame.performLabel.setForeground(Color.green);
             }
         });
 
@@ -141,50 +142,52 @@ public class LabelCourse extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String name= course.getName();
+                int errorCount=0;
                 if(!courseNameField.getText().isEmpty()){
-                    course.setName(courseNameField.getText());
-                    LabelCourse.this.courseName.setText(courseNameField.getText());
-                }else{
-                    //TODO give empty error
-                }
-                if(!courseUnitField.getText().isEmpty()){
-                    if(isInteger(courseUnit.getText())){
-                        course.setUnits(Integer.parseInt(courseUnitField.getText()));
-                        LabelCourse.this.courseUnit.setText(courseUnitField.getText());
-                }else{
-                        //TODO give type error
+                    if(!courseUnitField.getText().isEmpty()){
+                        if((courseUnit.getText().matches("^\\d+$"))){
+                            CourseManager.courses.remove(LabelCourse.this.courseName);
+                            CourseManager.courses.put(courseNameField.getText(),course);
+                            course.setName(courseNameField.getText());
+                            LabelCourse.this.courseName.setText(courseNameField.getText());
+                            course.setUnits(Integer.parseInt(courseUnitField.getText()));
+                            LabelCourse.this.courseUnit.setText(courseUnitField.getText());
+                            course.setGrade((String) gradesComboBox.getSelectedItem());
+                            LabelCourse.this.courseGrade.setText((String) gradesComboBox.getSelectedItem());
+                            course.setIncluded(courseIncludedBox.isSelected());
+                            if(course.isIncluded()){
+                                courseIncluded.setBackground(Color.GREEN);
+                            }else{
+                                courseIncluded.setBackground(Color.RED);
+                            }
+                            try {
+                                if(errorCount==0){
+                                    CourseManager.changeCourseToFile(name,course.getName(),course.getUnits(),course.getGrade(),course.isIncluded());
+                                }
+                            } catch (FileNotFoundException ex) {
+                                throw new RuntimeException(ex);
+                            }
+                            showBasicMode();
+                            CourseManager.gpaCalculator();
+                        }else{
+                            DefaultFrame.performLabel.setText("Course unit should be a number.");
+                            DefaultFrame.performLabel.setForeground(Color.red);
+                            errorCount++;
+                        }
                     }
                 }else{
-                    //TODO give empty error
+                    DefaultFrame.performLabel.setText("Course should have a name!");
+                    DefaultFrame.performLabel.setForeground(Color.red);
+                    errorCount++;
                 }
-                course.setGrade((String) gradesComboBox.getSelectedItem());
-                LabelCourse.this.courseGrade.setText((String) gradesComboBox.getSelectedItem());
-                course.setIncluded(courseIncludedBox.isSelected());
-                if(course.isIncluded()){
-                    courseIncluded.setBackground(Color.GREEN);
-                }else{
-                    courseIncluded.setBackground(Color.RED);
+                if(errorCount!=0){
+                    DefaultFrame.performLabel.setText("COURSE EDITED SUCCESSFULLY");
+                    DefaultFrame.performLabel.setForeground(Color.green);
                 }
-                //LabelCourse.this.repaint();
-                try {
-                    CourseManager.changeCourseToFile(name,course.getName(),course.getUnits(),course.getGrade(),course.isIncluded());
-                } catch (FileNotFoundException ex) {
-                    throw new RuntimeException(ex);
-                }
-                showBasicMode();
-                CourseManager.gpaCalculator();
             }
         });
     }
 
-    public static boolean isInteger(String str) {
-        try {
-            Integer.parseInt(str);
-            return true;
-        } catch (NumberFormatException e) {
-            return false;
-        }
-    }
 
     private void showEditMode(){
         courseName.setVisible(false);
