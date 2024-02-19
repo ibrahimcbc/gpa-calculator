@@ -145,7 +145,7 @@ public class LabelCourse extends JPanel {
                 int errorCount=0;
                 if(!courseNameField.getText().isEmpty()){
                     if(!courseUnitField.getText().isEmpty()){
-                        if((courseUnit.getText().matches("^\\d+$"))){
+                        if((courseUnitField.getText().matches("^\\d+$"))){
                             CourseManager.courses.remove(LabelCourse.this.courseName);
                             CourseManager.courses.put(courseNameField.getText(),course);
                             course.setName(courseNameField.getText());
@@ -174,13 +174,17 @@ public class LabelCourse extends JPanel {
                             DefaultFrame.performLabel.setForeground(Color.red);
                             errorCount++;
                         }
+                    }else{
+                        DefaultFrame.performLabel.setText("Course unit have a name!");
+                        DefaultFrame.performLabel.setForeground(Color.red);
+                        errorCount++;
                     }
                 }else{
                     DefaultFrame.performLabel.setText("Course should have a name!");
                     DefaultFrame.performLabel.setForeground(Color.red);
                     errorCount++;
                 }
-                if(errorCount!=0){
+                if(errorCount==0){
                     DefaultFrame.performLabel.setText("COURSE EDITED SUCCESSFULLY");
                     DefaultFrame.performLabel.setForeground(Color.green);
                 }

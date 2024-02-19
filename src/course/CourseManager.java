@@ -143,6 +143,7 @@ public class CourseManager {
         double totalGrade=0.00;
         if(courses.isEmpty()){
             defaultFrame.labelGPA.setText("TOTAL GPA: "+ 0.00);
+            return;
         }else{
             for(Course course : courses.values()){
                 if(course.included){
