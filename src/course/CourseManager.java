@@ -4,8 +4,6 @@ import app_frame.DefaultFrame;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -20,15 +18,6 @@ public class CourseManager {
     static DefaultFrame defaultFrame=new DefaultFrame();
     public static HashMap<String,Course> courses= new HashMap();
     public static String file= "src\\course\\courses.txt";
-    public void addCourse(String name,Course course){
-        for(String course_name : courses.keySet()){
-            if(course_name.equals(name)){
-                System.out.println("Course already taken.");
-                break;
-            }
-        }
-        courses.put(name,course);
-    }
 
     public static void writeToFile(String courseName, int courseUnit, String courseGrade, boolean courseIncluded){
         String courseToAppend= courseName+";"+courseUnit+";"+courseGrade+";"+courseIncluded+"\n";
@@ -90,11 +79,9 @@ public class CourseManager {
         } catch (FileNotFoundException e){
             System.err.println("File not found" + e.getMessage());
         }
-        System.out.println("getCoursesFromTxt function executed successfully, courses in txt become to objects in hashmap");
     }
 
     public static void deleteCourseFromTxt(String courseName) throws FileNotFoundException {
-        System.out.println(courseName);
         try {
             BufferedReader reader = new BufferedReader(new FileReader(file));
             StringBuilder content = new StringBuilder();
@@ -118,7 +105,9 @@ public class CourseManager {
             e.printStackTrace();
         }
     }
-
+    public static boolean nameChecker(String name){
+        return courses.containsKey(name);
+    }
 
     public static void listCourses(){
         for(Course course : courses.values()){
@@ -130,7 +119,6 @@ public class CourseManager {
             defaultFrame.existingPanel.add(newLabel);
             defaultFrame.existingPanel.add(blackPanel);
         }
-        System.out.println("listCourses function done successfully, courses labeled to frame.");
     }
 
     private static String formatDouble(double value){
@@ -143,16 +131,16 @@ public class CourseManager {
         double totalGrade=0.00;
         if(courses.isEmpty()){
             defaultFrame.labelGPA.setText("TOTAL GPA: "+ 0.00);
+            return;
         }else{
             for(Course course : courses.values()){
                 if(course.included){
-                    System.out.println("course active: unit: "+course.getUnits()+" weight: "+ course.getLetterPoint());
                     totalUnit+=course.getUnits();
                     totalGrade+= course.getLetterPoint()*course.getUnits();
                 }
             }
         }
-        defaultFrame.labelGPA.setText("TOTAL GPA: "+formatDouble(totalGrade/totalUnit));
+        defaultFrame.labelGPA.setText("TOTAL GPA: "+formatDouble(totalGrade/totalUnit)+"   Total Credit: "+totalUnit);
     }
 
     public CourseManager(){
