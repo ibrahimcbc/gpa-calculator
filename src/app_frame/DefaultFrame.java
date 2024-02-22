@@ -44,10 +44,10 @@ public class DefaultFrame extends JFrame {
         infoLabel.setText("Course Name                 Unit             Grade     Included");
         infoLabel.setVisible(true);
 
-        addInfoLabel.setBounds(50,650,400,25);
+        addInfoLabel.setBounds(70,680,400,25);
         addInfoLabel.setForeground(Color.white);
-        addInfoLabel.setText("Course Name                 Unit             Grade     Included");
-        addInfoLabel.setVisible(true);
+        addInfoLabel.setText("Course Name            Unit             Grade     Included");
+        addInfoLabel.setVisible(false);
 
         coursesPanel.setVisible(true);
         coursesPanel.setBounds(50,50,500 ,500);
@@ -165,6 +165,7 @@ public class DefaultFrame extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 buttonAdd.setVisible(false);
                 panelAdd.setVisible(true);
+                addInfoLabel.setVisible(true);
             }
         });
 
@@ -173,6 +174,7 @@ public class DefaultFrame extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 panelAdd.setVisible(false);
                 buttonAdd.setVisible(true);
+                addInfoLabel.setVisible(false);
             }
         });
     }

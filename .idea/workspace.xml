@@ -9,11 +9,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0738dbc8-2dc6-4d2d-8f3a-30b20f3e6146" name="Changes" comment="bug fix">
+    <list default="true" id="670f542b-3d28-4002-ad27-ee3376eac816" name="Changes" comment="merge">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app_frame/DefaultFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/app_frame/DefaultFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/course/CourseManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/course/CourseManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/course/LabelCourse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/course/LabelCourse.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/course/courses.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/course/courses.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
