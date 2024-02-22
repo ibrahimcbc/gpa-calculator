@@ -141,50 +141,46 @@ public class LabelCourse extends JPanel {
         courseConfirm.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String name = course.getName();
-                int errorCount = 0;
-                if (courseNameField.getText().isEmpty()) {
+                String name= course.getName();
+                int errorCount=0;
+                if(!courseNameField.getText().isEmpty()){
+                    if(!courseUnitField.getText().isEmpty()){
+                        if((courseUnit.getText().matches("^\\d+$"))){
+                            CourseManager.courses.remove(LabelCourse.this.courseName);
+                            CourseManager.courses.put(courseNameField.getText(),course);
+                            course.setName(courseNameField.getText());
+                            LabelCourse.this.courseName.setText(courseNameField.getText());
+                            course.setUnits(Integer.parseInt(courseUnitField.getText()));
+                            LabelCourse.this.courseUnit.setText(courseUnitField.getText());
+                            course.setGrade((String) gradesComboBox.getSelectedItem());
+                            LabelCourse.this.courseGrade.setText((String) gradesComboBox.getSelectedItem());
+                            course.setIncluded(courseIncludedBox.isSelected());
+                            if(course.isIncluded()){
+                                courseIncluded.setBackground(Color.GREEN);
+                            }else{
+                                courseIncluded.setBackground(Color.RED);
+                            }
+                            try {
+                                if(errorCount==0){
+                                    CourseManager.changeCourseToFile(name,course.getName(),course.getUnits(),course.getGrade(),course.isIncluded());
+                                }
+                            } catch (FileNotFoundException ex) {
+                                throw new RuntimeException(ex);
+                            }
+                            showBasicMode();
+                            CourseManager.gpaCalculator();
+                        }else{
+                            DefaultFrame.performLabel.setText("Course unit should be a number.");
+                            DefaultFrame.performLabel.setForeground(Color.red);
+                            errorCount++;
+                        }
+                    }
+                }else{
                     DefaultFrame.performLabel.setText("Course should have a name!");
                     DefaultFrame.performLabel.setForeground(Color.red);
                     errorCount++;
                 }
-                if (CourseManager.nameChecker(courseNameField.getText()) && !course.getName().matches(courseNameField.getText())) {
-                    DefaultFrame.performLabel.setText("Course already in the list!");
-                    DefaultFrame.performLabel.setForeground(Color.red);
-                    errorCount++;
-                }
-                if (courseUnitField.getText().isEmpty()) {
-                    DefaultFrame.performLabel.setText("Course unit should have a value!");
-                    DefaultFrame.performLabel.setForeground(Color.red);
-                    errorCount++;
-                }
-                if ((!courseUnitField.getText().matches("^\\d+$"))) {
-                    DefaultFrame.performLabel.setText("Course unit should be a number.");
-                    DefaultFrame.performLabel.setForeground(Color.red);
-                    errorCount++;
-                }
-                if (errorCount == 0) {
-                    CourseManager.courses.remove(LabelCourse.this.courseName);
-                    CourseManager.courses.put(courseNameField.getText(), course);
-                    course.setName(courseNameField.getText());
-                    LabelCourse.this.courseName.setText(courseNameField.getText());
-                    course.setUnits(Integer.parseInt(courseUnitField.getText()));
-                    LabelCourse.this.courseUnit.setText(courseUnitField.getText());
-                    course.setGrade((String) gradesComboBox.getSelectedItem());
-                    LabelCourse.this.courseGrade.setText((String) gradesComboBox.getSelectedItem());
-                    course.setIncluded(courseIncludedBox.isSelected());
-                    if (course.isIncluded()) {
-                        courseIncluded.setBackground(Color.GREEN);
-                    } else {
-                        courseIncluded.setBackground(Color.RED);
-                    }
-                    try {
-                        CourseManager.changeCourseToFile(name, course.getName(), course.getUnits(), course.getGrade(), course.isIncluded());
-                    } catch (FileNotFoundException ex) {
-                        throw new RuntimeException(ex);
-                    }
-                    showBasicMode();
-                    CourseManager.gpaCalculator();
+                if(errorCount!=0){
                     DefaultFrame.performLabel.setText("COURSE EDITED SUCCESSFULLY");
                     DefaultFrame.performLabel.setForeground(Color.green);
                 }
