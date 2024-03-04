@@ -99,8 +99,6 @@ public class CourseManager {
             BufferedWriter writer = new BufferedWriter(new FileWriter(file));
             writer.write(content.toString());
             writer.close();
-
-            System.out.println("Course " + courseName + " deleted successfully.");
         } catch (IOException e) {
             e.printStackTrace();
         }

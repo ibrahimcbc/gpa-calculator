@@ -156,6 +156,7 @@ public class DefaultFrame extends JFrame {
                     performLabel.setText("COURSE ADDED SUCCESSFULLY");
                     performLabel.setForeground(Color.green);
                     DefaultFrame.this.repaint();
+                    addInfoLabel.setVisible(false);
                 }
             }
         });
